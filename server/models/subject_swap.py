@@ -18,6 +18,4 @@ class SubjectSwap(BaseModel):
   crn:int
   professor:str
   deadline:datetime
-  desired_subject:str 
-  
- 
+  desired_subject:str
