@@ -1,4 +1,4 @@
-def individual_subject_swap_serial(subject)->dict:
+def subject_swap_helper(subject)->dict:
     return {
         "id": str(subject["_id"]),
         "current_subject":subject["current_subject"],
@@ -12,5 +12,5 @@ def individual_subject_swap_serial(subject)->dict:
     }
 
 
-def list_subject_swap_serial(subjects)->list:
-    return [individual_subject_swap_serial(subject) for subject in subjects]
+def subject_swaps_helper(subjects)->list:
+    return [subject_swap_helper(subject) for subject in subjects]
