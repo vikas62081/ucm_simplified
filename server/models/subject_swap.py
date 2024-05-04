@@ -19,3 +19,5 @@ class SubjectSwap(BaseModel):
   professor:str
   deadline:datetime
   desired_subject:str
+
+  
