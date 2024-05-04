@@ -16,7 +16,6 @@ def get_subject_swaps(status:SubjectSwapStatus):
     return ResponseModel(data=subjects,message="Subject swap data retrieved successfully")
 
 
-
 @subject_swap_router.get("/{id}")
 def get_subject_swaps_for_id(id:str):
     subject=SubjectSwapService.get_subject_swaps_by_id(id)

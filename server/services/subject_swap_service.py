@@ -4,6 +4,7 @@ from schemas.subject_swap_helper import subject_swaps_helper,subject_swap_helper
 from models.subject_swap import SubjectSwapStatus
 from fastapi import HTTPException
 from utils.index import ErrorResponseModel
+from datetime import datetime
 
 class SubjectSwapService:
    def get_subject_swaps(query):
@@ -19,6 +20,7 @@ class SubjectSwapService:
    def create_subject_swaps_request(subject):
     subject_dict = subject.dict()
     subject_dict['status'] = SubjectSwapStatus.PENDING
+    subject_dict['created_at']=datetime.now()
     subj=subject_swaps_collection.insert_one(dict(subject_dict))
     return SubjectSwapService.get_subject_swaps_by_id(subj.inserted_id)
    

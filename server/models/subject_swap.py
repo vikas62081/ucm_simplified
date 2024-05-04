@@ -19,5 +19,4 @@ class SubjectSwap(BaseModel):
   professor:str
   deadline:datetime
   desired_subject:str
-  created_at:datetime=datetime.now()
-  status:SubjectSwapStatus
+ 
