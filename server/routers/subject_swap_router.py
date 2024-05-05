@@ -11,25 +11,25 @@ def get_subject_swaps(status:SubjectSwapStatus):
     query = {}
     if status is not None:
         query['status'] = status.value
-    subjects=SubjectSwapService.get_subject_swaps(query)
+    subjects= SubjectSwapService.get_subject_swaps(query)
     return SuccessResponse(data=subjects,message="Subject swap data retrieved successfully")
 
 
 @subject_swap_router.get("/{id}")
-def get_subject_swaps_for_id(id:str):
-    subject=SubjectSwapService.get_subject_swaps_by_id(id)
+def get_subject_swap_for_id(id:str):
+    subject= SubjectSwapService.get_subject_swap_by_id(id)
     return SuccessResponse(data=subject,message="Subject swap data retrieved successfully")
 
 
 @subject_swap_router.post("")
 def create_subject_swaps_request(subject:SubjectSwap):
-   new_subject = SubjectSwapService.create_subject_swaps_request(subject)
+   new_subject = SubjectSwapService.create_subject_swap_request(subject)
    return SuccessResponse(data=new_subject,message= "Subject swap request created successfully")
 
 
 @subject_swap_router.patch('/${id}')
 def update_subject_swaps_request(id:str, subject: SubjectSwap):
-    updated_subject=SubjectSwapService.update_subject_swaps_request(id,subject)
+    updated_subject=SubjectSwapService.update_subject_swap_request(id,subject)
     return SuccessResponse(data=updated_subject,message=  "Subject swap request updated successfully")
 
 
@@ -37,10 +37,10 @@ def update_subject_swaps_request(id:str, subject: SubjectSwap):
 def update_subject_swaps_request_status(id: str):
     subject={}
     subject['status'] =SubjectSwapStatus.COMPLETED
-    updated_subject=SubjectSwapService.update_subject_swaps_request(id,subject)
+    updated_subject= SubjectSwapService.update_subject_swap_request(id,subject)
     return SuccessResponse(data=updated_subject,message= "Subject swap request completed successfully")
 
 @subject_swap_router.delete('/${id}')
 def delete_subject_swaps_request_status(id: str):
-    SubjectSwapService.delete_subject_swaps_request(id)
+    SubjectSwapService.delete_subject_swap_request(id)
     return SuccessResponse(data=id,message= "Subject swap request deleted successfully")

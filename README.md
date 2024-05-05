@@ -1,17 +1,21 @@
-# Python + API
+# Backend + Python + FastAPI
 
-1. Create virtual environment just under project folder. 
+1. Create virtual environment just under project folder.
+
 ```
-    >> python -m venv .venv
+    python -m venv .venv
 ```
 
 2. Execute this command from the root, to activate the virtual environment.
 
->**Windows**
+> **Windows**
+
 ```
-    >> .venv\Scripts\Activate
+    .venv\Scripts\Activate
 ```
->**Linux (or) macOS**
+
+> **Linux (or) macOS**
+
 ```
     source .venv/bin/activate
 ```
@@ -19,17 +23,18 @@
 3. Install all the dependencies from requirements.txt
 
 ```
-    >> pip install -r server\requirements.txt
+    pip install -r server\requirements.txt
 ```
 
 4. You are almost there!! Just one step away! Just start the server😎
+
 ```
-    >> python server\main.py
+    python server\main.py
 ```
 
 5. Yay!! You did it 🥳
 
-# React + TypeScript + Vite
+# Frontend + React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -48,12 +53,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`

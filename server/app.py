@@ -1,8 +1,7 @@
-# main.py
-# Execute : uvicorn main:app --reload
 from fastapi import FastAPI,status
 from fastapi.exceptions import RequestValidationError
 from bson.errors import InvalidId
+from fastapi.responses import RedirectResponse
 from routers.subject_swap_router import subject_swap_router
 from routers.user_router import user_router
 
@@ -13,6 +12,10 @@ from models.error_response import ErrorResponse
 app = FastAPI()
 
 
+
+@app.get("/")
+async def check_health():
+    return {"status": "OK"}
 
 app.include_router(subject_swap_router,prefix="/subjects")
  
