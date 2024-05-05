@@ -23,7 +23,7 @@ class SubjectSwapService:
       subject_dict['created_at']=datetime.now()
       subj=subject_swaps_collection.insert_one(dict(subject_dict))
       doc_id=subj.inserted_id
-      UserService.add_subject_swap_request("6636d3fdfe5dd56574b5eae6",doc_id)
+      UserService.add_subject_swap_request("663808ca92958964ba8bd457",doc_id)
       return SubjectSwapService.get_subject_swap_by_id(doc_id)
    
    def update_subject_swap_request(id:str,subject):
