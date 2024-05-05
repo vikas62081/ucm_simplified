@@ -1,6 +1,6 @@
 # main.py
 # Execute : uvicorn main:app --reload
-from fastapi import FastAPI
+from fastapi import FastAPI,status
 from fastapi.exceptions import RequestValidationError
 from bson.errors import InvalidId
 from routers.subject_swap_router import subject_swap_router
@@ -14,11 +14,17 @@ app = FastAPI()
 
 
 
+app.include_router(subject_swap_router,prefix="/subjects")
+ 
+app.include_router(user_router,prefix='/users')
+
+#Global Exception handlers
+
 @app.exception_handler(RequestValidationError)
 async def http_exception_handler(request, exc:RequestValidationError):
     error_details=exc.errors()[0]
     message=error_details['loc'][1]+" "+error_details['msg']
-    return ErrorResponse(message=message,status_code=422).send()
+    return ErrorResponse(message=message,status_code=status.HTTP_422_UNPROCESSABLE_ENTITY).send()
    
 @app.exception_handler(NotFoundException)
 async def not_found_expection_handler(request,exc:NotFoundException):
@@ -26,15 +32,10 @@ async def not_found_expection_handler(request,exc:NotFoundException):
   
 @app.exception_handler(InvalidId)
 async def exception_handler(request, exc):
-    return ErrorResponse(message=str(exc),status_code=500).send()
+    return ErrorResponse(message=str(exc),status_code=status.HTTP_422_UNPROCESSABLE_ENTITY).send()
 
 @app.exception_handler(Exception)
 async def exception_handler(request, exc):
-    return ErrorResponse(message=str(exc),status_code=500).send()
+    return ErrorResponse(message=str(exc),status_code=status.HTTP_500_INTERNAL_SERVER_ERROR).send()
    
    
-
-app.include_router(subject_swap_router,prefix="/subjects")
- 
-app.include_router(user_router,prefix='/users')
- 
