@@ -25,3 +25,4 @@ dist-ssr
 
 # server
 /server/py-env
+/server/__pycache__
