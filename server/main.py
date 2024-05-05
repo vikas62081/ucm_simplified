@@ -1,26 +1,40 @@
 # main.py
 # Execute : uvicorn main:app --reload
-from fastapi import FastAPI, HTTPException
-from routers.subject_swap_router import subject_swap_router
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
-from utils.index import ErrorResponseModel
+from bson.errors import InvalidId
+from routers.subject_swap_router import subject_swap_router
+from routers.user_router import user_router
+
+from exceptions.not_found_expection import NotFoundException
+from models.error_response import ErrorResponse
+
+
 app = FastAPI()
 
 
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request, exc):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content=exc.detail)
 
 @app.exception_handler(RequestValidationError)
-async def http_exception_handler(request, exc):
-    return JSONResponse(
-        status_code=422,
-        content=ErrorResponseModel(code=422,error=True,message=str(exc)))
+async def http_exception_handler(request, exc:RequestValidationError):
+    error_details=exc.errors()[0]
+    message=error_details['loc'][1]+" "+error_details['msg']
+    return ErrorResponse(message=message,status_code=422).send()
+   
+@app.exception_handler(NotFoundException)
+async def not_found_expection_handler(request,exc:NotFoundException):
+    return ErrorResponse(message=exc.message,status_code=exc.status_code).send()
+  
+@app.exception_handler(InvalidId)
+async def exception_handler(request, exc):
+    return ErrorResponse(message=str(exc),status_code=500).send()
+
+@app.exception_handler(Exception)
+async def exception_handler(request, exc):
+    return ErrorResponse(message=str(exc),status_code=500).send()
+   
+   
 
 app.include_router(subject_swap_router,prefix="/subjects")
  
-
+app.include_router(user_router,prefix='/users')
  

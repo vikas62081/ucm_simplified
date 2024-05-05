@@ -11,3 +11,5 @@ db=client["UCM_DB"]
 
 #Collections
 subject_swaps_collection = db["subject_swaps"]
+
+users_collection = db["users"]
