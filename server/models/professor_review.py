@@ -1,12 +1,10 @@
 
-from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 
 
 class ProfessorReview(BaseModel):
     user_id:str
-    professor_id:str
-    overall_rating_out_of_5:int
+    rating_out_of_5:int=Field(..., description="Rating out of 5", ge=1, le=5)
     comment:str
-    created_at:datetime
-    updated_at:datetime
+    
+    

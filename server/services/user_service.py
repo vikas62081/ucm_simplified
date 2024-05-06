@@ -25,6 +25,7 @@ class UserService:
         user_dict = user.dict()
         user_dict['subject_swaps']=[]
         user_dict['accommodations']=[]
+        user_dict['total_professors_review_count']=0
         user_dict['created_at']=datetime.now()
         user= users_collection.insert_one(dict(user_dict))
         return UserService.get_user_by_id(user.inserted_id)
@@ -46,6 +47,11 @@ class UserService:
     
     def add_accommodation_request(user_id:str,accommodation_id:str):
         return UserService.update_user_requests(user_id,accommodation_id,"accommodations")
-        
+    
+    def upadte_professors_review_count(user_id:str):
+        user=UserService.get_user_by_id(user_id)
+        updated_user={"total_professors_review_count":user["total_professors_review_count"]+1}
+        return UserService.update_user(user_id,updated_user)
+  
     
 

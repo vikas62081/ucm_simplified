@@ -6,6 +6,7 @@ def user_helper(user)->dict:
         "phone_number": user["phone_number"],
         "subject_swaps": user["subject_swaps"],
         "accommodations": user["accommodations"],
+        "total_professors_review_count": user["total_professors_review_count"]
     }
 
 def users_helper(users)->list:
