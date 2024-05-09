@@ -1,3 +1,9 @@
+/* Path: src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Existing styles */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -65,4 +71,17 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* src/index.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000; /* Example background color */
+  overflow: hidden;
 }
