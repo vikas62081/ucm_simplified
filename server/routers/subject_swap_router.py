@@ -23,21 +23,19 @@ def get_subject_swap_for_id(id:str):
 
 @subject_swap_router.post("")
 def create_subject_swaps_request(subject:SubjectSwap):
-   new_subject = SubjectSwapService.create_subject_swap_request(subject)
+   new_subject = SubjectSwapService.create_subject_swap_request(subject.model_dump())
    return SuccessResponse(data=new_subject,message= "Subject swap request created successfully")
 
 
 @subject_swap_router.patch('/${id}')
 def update_subject_swaps_request(id:str, subject: SubjectSwap):
-    updated_subject=SubjectSwapService.update_subject_swap_request(id,subject)
+    updated_subject=SubjectSwapService.update_subject_swap_request(id,subject.model_dump())
     return SuccessResponse(data=updated_subject,message=  "Subject swap request updated successfully")
 
 
 @subject_swap_router.patch('/${id}/complete')
-def update_subject_swaps_request_status(id: str):
-    subject={}
-    subject['status'] =SubjectSwapStatus.COMPLETED
-    updated_subject= SubjectSwapService.update_subject_swap_request(id,subject)
+def update_subject_swaps_request_complete(id: str):
+    updated_subject= SubjectSwapService.update_subject_swap_status_complete(id)
     return SuccessResponse(data=updated_subject,message= "Subject swap request completed successfully")
 
 @subject_swap_router.delete('/${id}')
