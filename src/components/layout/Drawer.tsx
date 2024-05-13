@@ -6,6 +6,13 @@ interface DrawerProps {
   closeDrawer: () => void;
 }
 
+const DrawerItems = [
+  { item_name: "Home", icon: "home" },
+  { item_name: "About", icon: "about" },
+  { item_name: "Service", icon: "services" },
+  { item_name: "Contact", icon: "contact" },
+];
+
 const Drawer: React.FC<DrawerProps> = ({ isOpen, closeDrawer }) => {
   return (
     <div
@@ -23,10 +30,9 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, closeDrawer }) => {
       >
         <h2 className="font-bold text-lg mb-4">Navigation</h2>
         <ul>
-          <li className="mb-2 color-red cursor-pointer">Home</li>
-          <li className="mb-2 cursor-pointer">About</li>
-          <li className="mb-2 cursor-pointer">Services</li>
-          <li className="mb-2 cursor-pointer">Contact</li>
+          {DrawerItems.map((item) => (
+            <li className="mb-2 cursor-pointer">{item.item_name}</li>
+          ))}
         </ul>
       </aside>
     </div>
