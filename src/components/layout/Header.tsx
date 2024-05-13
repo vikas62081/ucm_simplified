@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import Drawer from "./Drawer"; // Import the Drawer component
-
+import Logo from "../../assets/logo.png";
 const Header: React.FC = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           />
         </div>
 
-        <img src="src/assets/logo.png" alt="Logo" className="h-8" />
+        <img src={Logo} alt="Logo" className="h-8" />
         <FontAwesomeIcon
           icon={faUserCircle}
           size="xl"
