@@ -83,5 +83,10 @@ body, html {
   justify-content: center;
   align-items: center;
   background-color: #000000; /* Example background color */
-  overflow: hidden;
+  /* overflow: hidden; */
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  /* padding-bottom: env(safe-area-inset-bottom); */
 }
+
