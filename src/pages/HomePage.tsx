@@ -30,10 +30,10 @@ const dashboardItems = [
   },
 ];
 
-const summary = {
-  accCount: 8,
-  subCount: 6,
-};
+// const summary = {
+//   accCount: 8,
+//   subCount: 6,
+// };
 
 const HomePage: React.FC = () => {
   const navigateToDetails = (path: string) => {
