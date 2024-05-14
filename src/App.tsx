@@ -1,4 +1,4 @@
-// src/App.tsx
+import "./App.css";
 import AppRouter from "./routing/AppRouter";
 
 const App = () => {
