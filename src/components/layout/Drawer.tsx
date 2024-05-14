@@ -31,7 +31,9 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, closeDrawer }) => {
         <h2 className="font-bold text-lg mb-4">Navigation</h2>
         <ul>
           {DrawerItems.map((item) => (
-            <li className="mb-2 cursor-pointer">{item.item_name}</li>
+            <li className="mb-2 cursor-pointer text-gray-600">
+              {item.item_name}
+            </li>
           ))}
         </ul>
       </aside>
