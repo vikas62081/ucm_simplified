@@ -42,9 +42,9 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex w-full flex-col">
       <div className="flex-grow p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-4 ">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1 ">
           {dashboardItems.map((item) => (
             <Card
               title={item.title}
