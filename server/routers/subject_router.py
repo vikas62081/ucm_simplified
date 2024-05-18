@@ -1,44 +1,44 @@
 from fastapi import APIRouter
-from models.subject_swap import SubjectSwap, SubjectSwapStatus
-from services.subject_swap_service import SubjectSwapService
+from models.subject_swap import Status, SubjectSwap
+from services.subject_service import SubjectService
 from models.success_response import SuccessResponse
 
-subject_swap_router=APIRouter(tags=["Subject Swap"])
+subject_router=APIRouter(tags=["Subject Swap"])
 
 
-@subject_swap_router.get("")
-def get_subject_swaps(status:SubjectSwapStatus):
+@subject_router.get("")
+def get_subject_swaps(status:Status):
     query = {}
     if status is not None:
         query['status'] = status.value
-    subjects= SubjectSwapService.get_subject_swaps(query)
+    subjects= SubjectService.get_subject_swaps(query)
     return SuccessResponse(data=subjects,message="Subject swap data retrieved successfully")
 
 
-@subject_swap_router.get("/{id}")
+@subject_router.get("/{id}")
 def get_subject_swap_for_id(id:str):
-    subject= SubjectSwapService.get_subject_swap_by_id(id)
+    subject= SubjectService.get_subject_swap_by_id(id)
     return SuccessResponse(data=subject,message="Subject swap data retrieved successfully")
 
 
-@subject_swap_router.post("")
+@subject_router.post("")
 def create_subject_swaps_request(subject:SubjectSwap):
-   new_subject = SubjectSwapService.create_subject_swap_request(subject.model_dump())
+   new_subject = SubjectService.create_subject_swap_request(subject.model_dump())
    return SuccessResponse(data=new_subject,message= "Subject swap request created successfully")
 
 
-@subject_swap_router.patch('/${id}')
+@subject_router.patch('/${id}')
 def update_subject_swaps_request(id:str, subject: SubjectSwap):
-    updated_subject=SubjectSwapService.update_subject_swap_request(id,subject.model_dump())
+    updated_subject=SubjectService.update_subject_swap_request(id,subject.model_dump())
     return SuccessResponse(data=updated_subject,message=  "Subject swap request updated successfully")
 
 
-@subject_swap_router.patch('/${id}/complete')
+@subject_router.patch('/${id}/complete')
 def update_subject_swaps_request_complete(id: str):
-    updated_subject= SubjectSwapService.update_subject_swap_status_complete(id)
+    updated_subject= SubjectService.update_subject_swap_status_complete(id)
     return SuccessResponse(data=updated_subject,message= "Subject swap request completed successfully")
 
-@subject_swap_router.delete('/${id}')
+@subject_router.delete('/${id}')
 def delete_subject_swaps_request_status(id: str):
-    SubjectSwapService.delete_subject_swap_request(id)
+    SubjectService.delete_subject_swap_request(id)
     return SuccessResponse(data=id,message= "Subject swap request deleted successfully")
