@@ -37,7 +37,9 @@ export default {
           secondary: '#E0F2F1', // Replace '#ec4899' with your secondary color
       },
       dropShadow: {
-        'custom': '0 4px 2px rgba(0, 0, 0, 0.25)',
+        'custom': '0 4px 2px rgba(0, 0, 0, 0.25)'},
+      boxShadow: {
+        'custom': '0 4px 4px rgba(0, 0, 0, 0.25)',
       },
       
       
