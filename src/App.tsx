@@ -1,9 +1,12 @@
 import "./App.css";
-import AppRouter from "./routing/AppRouter";
+import AccommodationDetails from "./components/AccomodationDetails";
+// import AppRouter from "./routing/AppRouter";
 // import AccommodationDetails from "./AccomodationDetails";
 
 const App = () => {
-  return <AppRouter/>
+  // return <AppRouter/>
+  // return <AppRouter />;
+  return <AccommodationDetails />;
 };
 // const Counter = () => {
 //   return  <div className=" text-gray-600">Counter 0
