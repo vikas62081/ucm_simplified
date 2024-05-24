@@ -17,7 +17,7 @@ const desiredSubjectDetailsSchema = Yup.object().shape({
   secondTime: Yup.string(),
 });
 
-const DesiredSubjectEntry = (props: any) => {
+const CreateDesiredSubject = (props: any) => {
   return (
     <div>
       <ScrollToTop />
@@ -84,4 +84,4 @@ const DesiredSubjectEntry = (props: any) => {
   }
 };
 
-export default DesiredSubjectEntry;
+export default CreateDesiredSubject;

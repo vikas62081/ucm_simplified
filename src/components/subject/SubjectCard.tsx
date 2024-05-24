@@ -26,14 +26,18 @@ const SubjectCard = (props: SubjectCardTypes) => {
     extraInfo,
   } = props;
 
+  const goToSubjectDetail = () => {
+    if (type === "normalCard") {
+      navigate("/subjects/detail", { state: extraInfo });
+    }
+  };
+
   return (
     <div>
       <div
         className={`rounded-lg border border-gray-300 bg-white p-3 text-gray-900 ${dropShadow ? "shadow-custom" : ""}`}
         onClick={() => {
-          if (type === "normalCard") {
-            navigate("/subjects/detail", { state: extraInfo });
-          }
+          goToSubjectDetail();
         }}
       >
         {/* TITLE */}

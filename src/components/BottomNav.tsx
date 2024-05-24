@@ -7,12 +7,18 @@ import {
   faUser,
   faPlus,
   faTimes, // Include faTimes for the cross icon
+  IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 
 const BottomNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
+  interface itemType {
+    icon: IconDefinition;
+    label: string;
+  }
+
+  const navItems: itemType[] = [
     { icon: faHome, label: "Home" },
     { icon: faSearch, label: "Search" },
     { icon: isOpen ? faTimes : faPlus, label: "Menu" }, // Toggle icon based on state
@@ -20,6 +26,11 @@ const BottomNav: React.FC = () => {
     { icon: faUser, label: "Profile" },
   ];
 
+  function toggleMenu(item: itemType) {
+    if (item.icon === faPlus || item.icon === faTimes) {
+      setIsOpen(!isOpen);
+    }
+  }
   return (
     <div
       className="sticky bottom-0 w-full bg-primary font-sans shadow-lg drop-shadow-2xl "
@@ -29,11 +40,7 @@ const BottomNav: React.FC = () => {
         {navItems.map((item, index) => (
           <button
             key={index}
-            onClick={() => {
-              if (item.icon === faPlus || item.icon === faTimes) {
-                setIsOpen(!isOpen);
-              }
-            }}
+            onClick={() => toggleMenu(item)}
             className="flex h-12 w-12 items-center justify-center rounded-full text-xl text-white"
             style={{
               backgroundColor: "transparent",

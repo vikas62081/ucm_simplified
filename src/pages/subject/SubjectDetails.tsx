@@ -18,12 +18,11 @@ const contactList = [
 const SubjectDetails = () => {
   const location = useLocation();
   const { state } = location;
-  console.log("state", state);
 
   return (
     <div className="font-inter flex  h-screen flex-col  space-y-2 bg-white ">
       {/* Main swap info */}
-      <div className="heading mb-0 ">{state.name}</div>
+      <div className="heading mb-0 ">{state.subject}</div>
       <div className="flex items-center ">
         <CalenderIcon />
         <div className="flex-div pl-1 text-xs text-gray-400 ">

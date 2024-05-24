@@ -40,10 +40,8 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const navigateToDetails = (path: string) => {
     // Replace with your router's navigation method
-    // console.log(`Navigating to ${path}`);
     navigate(path);
   };
-  console.log("HomePage rendered");
   return (
     <div className="flex w-full flex-col">
       <div className="flex-grow">

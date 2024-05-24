@@ -5,7 +5,7 @@ import { PlusIcon } from "../../assets/svg_icons";
 import Gap from "../../components/common/Gap";
 import Divider from "../../components/common/Divider";
 import { useState } from "react";
-import DesiredSubjectEntry from "./DesiredSubjectEntry";
+import CreateDesiredSubject from "./CreateDesiredSubject";
 import SubjectCard, {
   SubjectCardTypes,
 } from "../../components/subject/SubjectCard";
@@ -54,7 +54,7 @@ const SubjectRequest = () => {
   };
 
   return desiredSubjectVisible ? (
-    <DesiredSubjectEntry onClick={setDesiredSubjectPage} />
+    <CreateDesiredSubject onClick={setDesiredSubjectPage} />
   ) : (
     <div>
       <p className="heading">New Swap Request</p>

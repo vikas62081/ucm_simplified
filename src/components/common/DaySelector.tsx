@@ -4,21 +4,17 @@ import { FieldProps } from "formik";
 
 const Days = [
   { label: "Select a day", value: "" },
-  { label: "Monday", value: "Monday" },
-  { label: "Tuesday", value: "Tuesday" },
-  { label: "Wednesday", value: "Wednesday" },
-  { label: "Thursday", value: "Thursday" },
-  { label: "Friday", value: "Friday" },
-  { label: "Saturday", value: "Saturday" },
-  { label: "Sunday", value: "Sunday" },
+  { label: "Monday", value: "MON" },
+  { label: "Tuesday", value: "TUE" },
+  { label: "Wednesday", value: "WED" },
+  { label: "Thursday", value: "THU" },
+  { label: "Friday", value: "FRI" },
+  { label: "Saturday", value: "SAT" },
+  { label: "Sunday", value: "SUN" },
 ];
 
 const DaySelector: React.FC<FieldProps> = ({ field }) => {
-  // Log changes to see if the field values are updated
-  // console.log("Field value:", field.value);
-
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("Changing day to:", event.target.value);
     field.onChange(event); // Ensuring the change event is handled by Formik
   };
 
