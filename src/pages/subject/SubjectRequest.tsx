@@ -16,12 +16,12 @@ import FormField from "../../components/common/FormField";
 const subjectDetailsSchema = Yup.object().shape({
   subject: Yup.string().required("Subject is required*"),
   professorName: Yup.string().required("Professor name is required*"),
-  crn: Yup.string(),
+  crn: Yup.number(),
   day: Yup.string().required("Day is required*"),
   time: Yup.string().required("Time is required*"),
   mobileNumber: Yup.string()
     .matches(
-      /^\+1\d{10}$|^\+91\d{10}$/, // Enforces the country code and ensures the correct number of digits follow
+      /^\d{10}$/, // Enforces the country code and ensures the correct number of digits follow
       "Please enter a valid US or Indian mobile number with the country code",
     )
     .required("Mobile number is required"),
@@ -80,7 +80,7 @@ const SubjectRequest = () => {
             <div className="flex flex-col gap-4">
               <FormField name="subject" placeholder="Subject you want" />
               <FormField name="professorName" placeholder="Professor Name" />
-              <FormField name="crn" placeholder="CRN" optional />
+              <FormField name="crn" placeholder="CRN" optional type="number" />
               <FormField name="day" component={DaySelector} />
               <FormField name="time" component={TimePicker} />
             </div>
@@ -123,7 +123,8 @@ const SubjectRequest = () => {
             <p className="text-label">Contact Details</p>
             <FormField
               name="mobileNumber"
-              placeholder="+1 / +91 <space> Whatsapp Number "
+              placeholder="Whatsapp Number "
+              type="tel"
             />
             <Gap gap={4} />
             <Button

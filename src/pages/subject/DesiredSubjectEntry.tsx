@@ -58,7 +58,6 @@ const DesiredSubjectEntry = (props: any) => {
             <FormField name="crn" placeholder="CRN" optional />
             <FormField name="firstDay" component={DaySelector} />
             <FormField name="firstTime" component={TimePicker} />
-            {/* //type password and number and email */}
             <div>
               {secondDayLabel()}
               <FormField name="secondDay" component={DaySelector} optional />

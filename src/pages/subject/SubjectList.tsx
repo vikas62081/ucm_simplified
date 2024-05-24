@@ -13,9 +13,9 @@ const SubjectList: React.FC = () => {
       {subjectData.map((item, index) => (
         <SubjectCard
           key={index} // Assuming each item has a unique 'id'
-          name={item.name}
+          subject={item.subject}
           timing={item.timing}
-          professor={item.professor}
+          professorName={item.professorName}
           expectedsubject={item.expectedsubject}
           dropShadow={item.dropShadow}
           extraInfo={item}
