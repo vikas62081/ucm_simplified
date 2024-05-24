@@ -21,7 +21,7 @@ const subjectDetailsSchema = Yup.object().shape({
   time: Yup.string().required("Time is required*"),
   mobileNumber: Yup.string()
     .matches(
-      /^\+1 \d{10}$|^\+91 \d{10}$/, // Enforces the country code and ensures the correct number of digits follow
+      /^\+1\d{10}$|^\+91\d{10}$/, // Enforces the country code and ensures the correct number of digits follow
       "Please enter a valid US or Indian mobile number with the country code",
     )
     .required("Mobile number is required"),

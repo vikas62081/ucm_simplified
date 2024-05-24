@@ -6,6 +6,7 @@ interface FormFieldProps {
   component?: any;
   optional?: boolean;
   placeholder?: string;
+  type?: string; // Include type in props
 }
 
 const FormField: React.FC<FormFieldProps> = ({
@@ -13,6 +14,7 @@ const FormField: React.FC<FormFieldProps> = ({
   placeholder,
   component = TextInput,
   optional = false,
+  type = "text", // Default to text if not specified
 }) => {
   const isTextInput = placeholder ? true : false;
   return (
@@ -22,6 +24,7 @@ const FormField: React.FC<FormFieldProps> = ({
         as={isTextInput ? component : ""}
         component={isTextInput ? "" : component}
         placeholder={optional ? `${placeholder} (Optional)` : placeholder}
+        type={type} // Pass type to the TextInput component
       />
       <ErrorMessage name={name} component="div" className="error" />
     </div>

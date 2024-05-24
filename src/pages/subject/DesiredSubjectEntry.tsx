@@ -24,7 +24,7 @@ const DesiredSubjectEntry = (props: any) => {
       <p className="heading">Desired Subject Details</p>
       <Formik
         initialValues={{
-          subject: "",
+          subject: "advance algo",
           professorName: "",
           crn: "",
           firstDay: "",
@@ -58,6 +58,7 @@ const DesiredSubjectEntry = (props: any) => {
             <FormField name="crn" placeholder="CRN" optional />
             <FormField name="firstDay" component={DaySelector} />
             <FormField name="firstTime" component={TimePicker} />
+            {/* //type password and number and email */}
             <div>
               {secondDayLabel()}
               <FormField name="secondDay" component={DaySelector} optional />

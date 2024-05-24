@@ -13,7 +13,7 @@ const Days = [
   { label: "Sunday", value: "Sunday" },
 ];
 
-const DaySelector: React.FC<FieldProps> = ({ field, form }) => {
+const DaySelector: React.FC<FieldProps> = ({ field }) => {
   // Log changes to see if the field values are updated
   // console.log("Field value:", field.value);
 
