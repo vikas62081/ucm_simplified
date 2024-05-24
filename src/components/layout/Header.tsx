@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 w-full py-3 px-6 flex justify-between items-center text-white bg-primary shadow-md ">
+      <header className="sticky top-0 z-10 flex w-full items-center justify-between bg-primary px-6 py-3 text-white shadow-md">
         <div className="">
           <FontAwesomeIcon
             icon={faBars}

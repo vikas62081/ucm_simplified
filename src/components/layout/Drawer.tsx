@@ -1,5 +1,6 @@
 // src/components/layout/Drawer.tsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -7,32 +8,32 @@ interface DrawerProps {
 }
 
 const DrawerItems = [
-  { item_name: "Home", icon: "home" },
-  { item_name: "About", icon: "about" },
-  { item_name: "Service", icon: "services" },
-  { item_name: "Contact", icon: "contact" },
+  { item_name: "Home", path: "/" },
+  { item_name: "About", path: "/about" },
+  { item_name: "Service", path: "/subject" },
+  { item_name: "Contact", path: "/contact" },
 ];
 
 const Drawer: React.FC<DrawerProps> = ({ isOpen, closeDrawer }) => {
   return (
     <div
-      className={`fixed inset-0 bg-gray-600 bg-opacity-50 z-50 transition-opacity duration-300 ${
-        isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+      className={`fixed inset-0 z-50 bg-gray-600 bg-opacity-50 transition-opacity duration-300 ${
+        isOpen ? "visible opacity-100" : "invisible opacity-0"
       }`}
       onClick={closeDrawer}
     >
       <aside
-        className={`fixed top-0 left-0 w-64 max-w-full h-full bg-white p-5 transition-transform duration-300 ${
+        className={`fixed left-0 top-0 h-full w-64 max-w-full bg-white p-5 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()} // Prevent click inside drawer from closing it
         style={{ height: "100vh" }} // Ensures the drawer does not exceed the viewport height
       >
-        <h2 className="font-bold text-lg mb-4">Navigation</h2>
+        <h2 className="mb-4 text-lg font-bold">Navigation</h2>
         <ul>
-          {DrawerItems.map((item) => (
-            <li className="mb-2 cursor-pointer text-gray-600">
-              {item.item_name}
+          {DrawerItems.map((item, index) => (
+            <li key={index} className="mb-2 cursor-pointer text-gray-600">
+              <Link to={item.path}>{item.item_name}</Link>
             </li>
           ))}
         </ul>
