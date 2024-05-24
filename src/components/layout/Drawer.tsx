@@ -8,9 +8,9 @@ interface DrawerProps {
 }
 
 const DrawerItems = [
-  { item_name: "Home", path: "/home" },
+  { item_name: "Home", path: "/" },
   { item_name: "About", path: "/about" },
-  { item_name: "Service", path: "/services" },
+  { item_name: "Service", path: "/subject" },
   { item_name: "Contact", path: "/contact" },
 ];
 
@@ -31,8 +31,8 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, closeDrawer }) => {
       >
         <h2 className="mb-4 text-lg font-bold">Navigation</h2>
         <ul>
-          {DrawerItems.map((item) => (
-            <li className="mb-2 cursor-pointer text-gray-600">
+          {DrawerItems.map((item, index) => (
+            <li key={index} className="mb-2 cursor-pointer text-gray-600">
               <Link to={item.path}>{item.item_name}</Link>
             </li>
           ))}
