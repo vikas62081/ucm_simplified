@@ -6,6 +6,7 @@ import {
   faExchangeAlt,
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const dashboardItems = [
   {
@@ -19,7 +20,7 @@ const dashboardItems = [
     title: "Subject Swap",
     description: "Swap subjects with peers.",
     icon: faExchangeAlt,
-    to: "/swap",
+    to: "/subjects/",
     key: "subCount",
   },
   {
@@ -36,17 +37,18 @@ const dashboardItems = [
 // };
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   const navigateToDetails = (path: string) => {
     // Replace with your router's navigation method
-    console.log(`Navigating to ${path}`);
+    navigate(path);
   };
-
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex-grow p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-4 ">
-          {dashboardItems.map((item) => (
+    <div className="flex w-full flex-col">
+      <div className="flex-grow">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1 ">
+          {dashboardItems.map((item, index) => (
             <Card
+              key={index}
               title={item.title}
               // description={summary[item?.key] || "N/A"}
               description={item.description}

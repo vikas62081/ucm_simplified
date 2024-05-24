@@ -13,14 +13,13 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, description, icon, onClick }) => {
   return (
     <div
-      className="bg-white rounded-lg p-4 flex flex-col items-center text-center shadow-sm cursor-pointer border border-gray-200 hover:border-gray-300 hover:shadow-md transition-shadow transition-border duration-300"
+      className="transition-border flex cursor-pointer flex-col items-center rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm transition-shadow duration-300 hover:border-gray-300 hover:shadow-md"
       onClick={onClick}
-      aria-role="button"
       role="button" // Correct role for accessibility
     >
       <FontAwesomeIcon icon={icon} size="2x" className="mb-4 text-primary" />
       <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <p className="mb-4 text-gray-600">{description}</p>
     </div>
   );
 };
