@@ -5,8 +5,8 @@ def professor_helper(professor)->dict:
         "email": professor["email"],
         "designation": professor["designation"],
         "subjects_taught": professor["subjects_taught"],
-        "career_started_date": professor["career_started_date"],
-        "ucm_joined_date": professor["ucm_joined_date"],
+        # "career_started_date": professor["career_started_date"],
+        # "ucm_joined_date": professor["ucm_joined_date"],
         "overall_rating_out_of_5": professor["overall_rating_out_of_5"],
         "total_ratings": professor["total_ratings"],
     }

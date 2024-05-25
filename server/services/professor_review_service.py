@@ -33,9 +33,9 @@ class ProfessorReviewService:
             raise NotFoundException(f"professor not found with id {id}")
         return professor_review_helper(review)
     
-    def create_professor_review(professors_review):
+    def create_professor_review(user_id,professors_review):
         prof_id=professors_review["professor_id"]
-        user_id=professors_review["user_id"]
+        professors_review["user_id"]=user_id
         try:
             existing_review=ProfessorReviewService.get_review_by_user_id_and_prof_id(user_id,prof_id)
             return ProfessorReviewService.update_professor_review(existing_review,professors_review)

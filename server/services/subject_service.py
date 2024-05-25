@@ -17,14 +17,14 @@ class SubjectService:
          raise NotFoundException(f"Subject not found with id {id}")
       return subject_helper(subject)
    
-   def create_subject_swap_request(subject:dict):
+   def create_subject_swap_request(user_id:str,subject:dict):
       now=datetime.now()
       subject['status'] = Status.ACTIVE
       subject['created_at']=now
       subject['updated_at']=now
       subj=subject_swaps_collection.insert_one(dict(subject))
       doc_id=subj.inserted_id
-      UserService.add_subject_swap_request("663808ca92958964ba8bd457",doc_id)
+      UserService.add_subject_swap_request(user_id,doc_id)
       return SubjectService.get_subject_swap_by_id(doc_id)
    
    def update_subject_swap_request(id:str,subject:dict):

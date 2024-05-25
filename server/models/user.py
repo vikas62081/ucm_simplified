@@ -13,3 +13,4 @@ class CreateUser(BaseModel):
     name: str = Field(..., min_length=2)
     email: EmailStr
     phone_number:str= Field(..., min_length=10,max_length=13)
+    password:str

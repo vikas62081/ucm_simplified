@@ -1,4 +1,4 @@
-from fastapi import FastAPI,status
+from fastapi import Depends, FastAPI,status
 from fastapi.exceptions import RequestValidationError
 from bson.errors import InvalidId
 
@@ -8,23 +8,25 @@ from routers.professor_router import professor_router
 from routers.accommodation_router import accommodation_router
 from exceptions.not_found_expection import NotFoundException
 from models.error_response import ErrorResponse
-
-
+from services.auth_helper_service import AuthHelperService
+from routers.auth_router import auth_router
 app = FastAPI()
 
-
+auth_dependency = Depends(AuthHelperService().auth_wrapper)
 
 @app.get("/")
 async def check_health():
     return {"status": "OK"}
 
-app.include_router(subject_router,prefix="/subjects")
+app.include_router(auth_router)
  
-app.include_router(user_router,prefix='/users')
+app.include_router(user_router,prefix='/users',dependencies=[auth_dependency])
 
-app.include_router(professor_router,prefix='/professors')
+app.include_router(subject_router,prefix="/subjects",dependencies=[auth_dependency])
 
-app.include_router(accommodation_router,prefix='/accommodations')
+app.include_router(professor_router,prefix='/professors',dependencies=[auth_dependency])
+
+app.include_router(accommodation_router,prefix='/accommodations',dependencies=[auth_dependency])
 
 #Global Exception handlers
 

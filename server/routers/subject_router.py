@@ -1,10 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from models.subject_swap import Status, SubjectSwap
+from services.auth_helper_service import AuthHelperService
 from services.subject_service import SubjectService
 from models.success_response import SuccessResponse
 
 subject_router=APIRouter(tags=["Subject Swap"])
-
+auth_dependency = Depends(AuthHelperService().auth_wrapper)
 
 @subject_router.get("")
 def get_subject_swaps(status:Status):
@@ -22,8 +23,8 @@ def get_subject_swap_for_id(id:str):
 
 
 @subject_router.post("")
-def create_subject_swaps_request(subject:SubjectSwap):
-   new_subject = SubjectService.create_subject_swap_request(subject.model_dump())
+def create_subject_swaps_request(subject:SubjectSwap,user_id:str=auth_dependency):
+   new_subject = SubjectService.create_subject_swap_request(user_id,subject.model_dump())
    return SuccessResponse(data=new_subject,message= "Subject swap request created successfully")
 
 

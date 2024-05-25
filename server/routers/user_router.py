@@ -2,7 +2,6 @@ from fastapi import APIRouter
 from services.user_service import UserService
 from services.professor_review_service import ProfessorReviewService
 from models.success_response import SuccessResponse
-from models.user import CreateUser
 
 user_router=APIRouter(tags=["User"])
 
@@ -21,7 +20,3 @@ def get_reviews_by_user_id(id:str):
     reviews=ProfessorReviewService.get_professor_review_by_usr_id(id)
     return SuccessResponse(data=reviews,message="Review data retrieved successfully")
 
-@user_router.post("")
-def create_user(user:CreateUser):
-    user=UserService.create_user(user)
-    return SuccessResponse(data=user,message="User created successfully")

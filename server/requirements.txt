@@ -1,3 +1,6 @@
 fastapi==0.111.0
 uvicorn==0.29.0
 pymongo==4.7.1
+passlib
+PyJWT
+bcrypt
