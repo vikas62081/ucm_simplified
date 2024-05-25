@@ -1,10 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "../components/layout";
-import HomePage from "../pages/HomePage";
+// import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import SubjectDetails from "../pages/subject/SubjectDetails";
 import SubjectList from "../pages/subject/SubjectList";
 import SubjectRequest from "../pages/subject/SubjectRequest";
+import HomePage from "../pages/HomePage";
+import AccomodationRequest from "../pages/accomodation/AccomodationRequest";
 
 const AppPaths = [
   {
@@ -26,6 +28,10 @@ const AppPaths = [
   {
     path: "/subjects/request",
     element: <SubjectRequest />,
+  },
+  {
+    path: "/accomodation/request",
+    element: <AccomodationRequest />,
   },
 ];
 
