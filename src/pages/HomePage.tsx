@@ -13,7 +13,7 @@ const dashboardItems = [
     title: "Accommodation",
     description: "Find and share accommodations.",
     icon: faBed,
-    to: "/accomodation/request",
+    to: "/accomodation/detail",
     key: "accCount",
   },
   {

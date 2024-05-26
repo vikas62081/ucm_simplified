@@ -7,6 +7,7 @@ import SubjectList from "../pages/subject/SubjectList";
 import SubjectRequest from "../pages/subject/SubjectRequest";
 import HomePage from "../pages/HomePage";
 import AccomodationRequest from "../pages/accomodation/AccomodationRequest";
+import AccommodationDetails from "../pages/accomodation/AccomodationDetails";
 
 const AppPaths = [
   {
@@ -32,6 +33,10 @@ const AppPaths = [
   {
     path: "/accomodation/request",
     element: <AccomodationRequest />,
+  },
+  {
+    path: "/accomodation/detail",
+    element: <AccommodationDetails />,
   },
 ];
 

@@ -1,7 +1,26 @@
 import Pill from "../../components/common/Pill";
 import Alert from "../../components/common/Alert";
+import { useEffect, useState } from "react";
 
 const AccommodationDetails = () => {
+  // This state object maps amenity names to their boolean selected states
+  const [selectedAmenities, setSelectedAmenities] = useState<
+    Record<string, boolean>
+  >({});
+
+  // Function to toggle the selected state of an amenity
+  const toggleAmenity = (amenity: string) => {
+    setSelectedAmenities((prev) => ({
+      ...prev,
+      [amenity]: !prev[amenity], // Toggle the boolean value
+    }));
+  };
+
+  // Use useEffect to log the selected amenities whenever they change
+  useEffect(() => {
+    console.log("Selected Amenities:", selectedAmenities);
+  }, [selectedAmenities]);
+
   const data = {
     id: "664822747f8f7b13625b83d2",
     community_name: "Whispering Hills",
@@ -35,7 +54,7 @@ const AccommodationDetails = () => {
     updated_at: "2024-05-17T22:37:24.562000",
   };
   return (
-    <div className={`grid grid-cols-1  bg-white px-4 py-5 text-gray-900`}>
+    <div className={`grid grid-cols-1  bg-white  py-5 text-gray-900`}>
       <div className=" flex justify-between text-xl font-bold">
         <div>
           {data.available_occupancies.boys} BOYS{" "}
@@ -127,8 +146,14 @@ const AccommodationDetails = () => {
       </div>
       <div className="text-custom-gray px-4 py-5 font-semibold">Amenities</div>
       <div className="justify-left flex flex-wrap">
-        {data.aminities.map((text) => (
-          <Pill key={text} title={text} disabled={true} />
+        {data.aminities.map((item) => (
+          <Pill
+            key={item}
+            title={item}
+            disabled={false}
+            isActive={!!selectedAmenities[item]} // Converts undefined to false if key doesn't exist
+            onClick={() => toggleAmenity(item)}
+          />
         ))}
       </div>
       <div className="text-custom-gray-text-contact px-4 pt-20 font-bold">
