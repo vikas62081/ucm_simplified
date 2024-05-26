@@ -3,12 +3,14 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 import jwt
+from exceptions.unauthorized_exception import UnauthorizedException
 
 class AuthHelperService:
     security = HTTPBearer()
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
     secret = 'SECRET'
-    minutes=30
+    time_to_expires_in_mins=30
+    algorithms='HS256'
 
     def get_password_hash(self, password):
         return self.pwd_context.hash(password)
@@ -18,26 +20,23 @@ class AuthHelperService:
 
     def encode_token(self, user_id,name):
         payload = {
-            'exp': datetime.utcnow() + timedelta(minutes=self.minutes),
+            'exp': datetime.utcnow() + timedelta(minutes=self.time_to_expires_in_mins),
             'iat': datetime.utcnow(),
             'id': user_id,
             'name':name
         }
-        token = jwt.encode(payload, self.secret, algorithm='HS256')
+        token = jwt.encode(payload, self.secret, algorithm=self.algorithms)
         return token
 
     def decode_token(self, token):
         try:
-            payload = jwt.decode(token, self.secret, algorithms=['HS256'])
+            payload = jwt.decode(token, self.secret, algorithms=[self.algorithms])
             return payload['id']
         except jwt.ExpiredSignatureError:
-            raise HTTPException(status_code=401, detail='Token has expired')
+            raise UnauthorizedException(message='Token has expired')
         except jwt.InvalidTokenError:
-            raise HTTPException(status_code=401, detail='Invalid token')
+            raise UnauthorizedException( message='Invalid token')
 
     def auth_wrapper(self, auth: HTTPAuthorizationCredentials = Security(security)):
         return self.decode_token(auth.credentials)
-    
-    def auth_dependency(self):
-        return self.auth_wrapper
 

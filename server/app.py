@@ -8,8 +8,11 @@ from routers.professor_router import professor_router
 from routers.accommodation_router import accommodation_router
 from exceptions.not_found_expection import NotFoundException
 from models.error_response import ErrorResponse
+from exceptions.unauthorized_exception import UnauthorizedException
 from services.auth_helper_service import AuthHelperService
 from routers.auth_router import auth_router
+
+
 app = FastAPI()
 
 auth_dependency = Depends(AuthHelperService().auth_wrapper)
@@ -38,6 +41,10 @@ async def http_exception_handler(request, exc:RequestValidationError):
    
 @app.exception_handler(NotFoundException)
 async def not_found_expection_handler(request,exc:NotFoundException):
+    return ErrorResponse(message=exc.message,status_code=exc.status_code).send()
+
+@app.exception_handler(UnauthorizedException)
+async def unauthorized_exception_handler(request,exc:UnauthorizedException):
     return ErrorResponse(message=exc.message,status_code=exc.status_code).send()
   
 @app.exception_handler(InvalidId)

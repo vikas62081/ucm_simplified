@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from models.auth import AuthDetails
+from models.auth import AuthDetails, ResetPassword
 from models.success_response import SuccessResponse
 from models.user import CreateUser
 from services.user_service import UserService
@@ -17,6 +17,11 @@ def login_user(auth: AuthDetails):
 
 @auth_router.post('/register')
 def register_user(user:CreateUser):
-    user=UserService.create_user(user)
+    user=auth_service.register_user(user)
     return SuccessResponse(data=user,message="User registered successfully")
 
+
+@auth_router.post('/reset-password')
+def register_user(reset_info:ResetPassword):
+    user=auth_service.reset_password(reset_info)
+    return SuccessResponse(data=user,message="Password reset successfully")
