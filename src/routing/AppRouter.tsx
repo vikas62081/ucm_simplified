@@ -5,11 +5,16 @@ import AboutPage from "../pages/AboutPage";
 import SubjectDetails from "../pages/subject/SubjectDetails";
 import SubjectList from "../pages/subject/SubjectList";
 import SubjectRequest from "../pages/subject/SubjectRequest";
+import SignUpScreen from "../pages/SignUpScreen";
 
 const AppPaths = [
   {
     path: "/",
-    element: <HomePage />,
+    // element: <HomePage />,
+    element: <SignUpScreen />,
+    
+    // element: <SubjectList />,
+    // element: <OtpScreen />,
   },
   {
     path: "/about",
