@@ -14,7 +14,7 @@ const subjectService = new SubjectService()
 const SubjectList: React.FC = () => {
   const navigate = useNavigate();
 
-  const { fetchData, data } = useGet()
+  const { fetchData } = useGet()
   
   useEffect(() => {
     fetchData(subjectService.getSubjects())

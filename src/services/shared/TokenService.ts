@@ -1,5 +1,4 @@
 import { REACT_API_URL } from "../../urlConfig";
-import AuthService from "../AuthService";
 import { jwtDecode } from "jwt-decode";
 
 // const authService = new AuthService();
