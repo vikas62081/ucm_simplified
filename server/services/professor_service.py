@@ -24,6 +24,7 @@ class ProfessorService:
         return ProfessorService.get_professor_by_id(professor.inserted_id)
     
     def update_professor(id:str,professor):
+        professor['updated_at']=datetime.now()
         professors_collection.find_one_and_update({"_id":ObjectId(id)},{"$set":dict(professor)})
         return ProfessorService.get_professor_by_id(id)
     

@@ -8,7 +8,7 @@ subject_router=APIRouter(tags=["Subject Swap"])
 auth_dependency = Depends(AuthHelperService().auth_wrapper)
 
 @subject_router.get("")
-def get_subject_swaps(status:Status):
+def get_subject_swaps(status:Status=Status.ACTIVE):
     query = {}
     if status is not None:
         query['status'] = status.value

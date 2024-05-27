@@ -1,6 +1,7 @@
 from fastapi import Depends, FastAPI,status
 from fastapi.exceptions import RequestValidationError
 from bson.errors import InvalidId
+from fastapi.middleware.cors import CORSMiddleware
 
 from routers.subject_router import subject_router
 from routers.user_router import user_router
@@ -14,6 +15,16 @@ from routers.auth_router import auth_router
 
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 auth_dependency = Depends(AuthHelperService().auth_wrapper)
 

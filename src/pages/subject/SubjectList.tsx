@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { subjectData } from "../../mockdata/subjectData";
 import SubjectCard from "../../components/subject/SubjectCard";
 
@@ -6,8 +6,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
+import useGet from "../../hooks/useGet";
+import SubjectService from "../../services/SubjectService";
+
+const subjectService = new SubjectService()
+
 const SubjectList: React.FC = () => {
   const navigate = useNavigate();
+
+  const { fetchData, data } = useGet()
+  
+  useEffect(() => {
+    fetchData(subjectService.getSubjects())
+  }, [])
+  
+
+
   return (
     <div className="flex flex-col gap-3 ">
       {subjectData.map((item, index) => (
