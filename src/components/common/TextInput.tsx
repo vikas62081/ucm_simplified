@@ -30,7 +30,7 @@ const TextInput: React.FC<InputProps> = ({
     <div className="relative flex items-center rounded-md border border-gray-300 shadow-sm">
       {type === "tel" && (
         <select
-          className="text-custom-black rounded-l-md border-r  border-gray-300   pl-2 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-primary"
+          className="rounded-l-md border-r border-gray-300 bg-white  pl-2   pr-10 text-sm text-custom-black focus:border-primary focus:outline-none focus:ring-primary"
           // style={{ height: `${TEXT_INPUT_HEIGHT}px` }}
           style={{
             backgroundImage:
@@ -53,7 +53,7 @@ const TextInput: React.FC<InputProps> = ({
         {...field}
         {...props}
         type={type === "tel" ? "number" : inputType}
-        className={`text-custom-black  block w-full flex-1 bg-white px-3 py-2 focus:border-primary focus:outline-none focus:ring-primary sm:text-sm ${type === "tel" ? "" : "rounded-md"}`}
+        className={`block  w-full flex-1 bg-white px-3 py-2 text-custom-black focus:border-primary focus:outline-none focus:ring-primary sm:text-sm ${type === "tel" ? "" : "rounded-md"}`}
         placeholder={placeholder}
         style={{ minHeight: TEXT_INPUT_HEIGHT }}
       />
@@ -61,7 +61,7 @@ const TextInput: React.FC<InputProps> = ({
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute inset-y-0 right-0 flex items-center pr-3"
+          className="absolute  right-0 mr-3 flex h-5 w-5 items-center bg-white"
         >
           {inputType === "password" ? <EyeEnabled /> : <EyeDisabled />}
         </button>
