@@ -1,5 +1,5 @@
 // Example usage in HomePage.tsx or any other component
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../components/common/Card";
 import {
   faBed,
@@ -7,6 +7,7 @@ import {
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../services/AuthService";
 
 const dashboardItems = [
   {
@@ -31,6 +32,7 @@ const dashboardItems = [
   },
 ];
 
+const authService = new AuthService()
 // const summary = {
 //   accCount: 8,
 //   subCount: 6,
@@ -38,6 +40,10 @@ const dashboardItems = [
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    authService.login("vikas@ucmo.com","Hello")
+  },[])
   const navigateToDetails = (path: string) => {
     // Replace with your router's navigation method
     navigate(path);

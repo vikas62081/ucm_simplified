@@ -1,29 +1,46 @@
-from fastapi import FastAPI,status
+from fastapi import Depends, FastAPI, HTTPException,status
 from fastapi.exceptions import RequestValidationError
 from bson.errors import InvalidId
+from fastapi.middleware.cors import CORSMiddleware
 
-from routers.subject_swap_router import subject_swap_router
+from routers.subject_router import subject_router
 from routers.user_router import user_router
 from routers.professor_router import professor_router
-from routers.professor_review_router import professor_review_router
-
+from routers.accommodation_router import accommodation_router
 from exceptions.not_found_expection import NotFoundException
 from models.error_response import ErrorResponse
+from exceptions.unauthorized_exception import UnauthorizedException
+from services.auth_helper_service import AuthHelperService
+from routers.auth_router import auth_router
 
 
 app = FastAPI()
 
+origins = ["*"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+auth_dependency = Depends(AuthHelperService().auth_wrapper)
 
 @app.get("/")
 async def check_health():
     return {"status": "OK"}
 
-app.include_router(subject_swap_router,prefix="/subjects")
+app.include_router(auth_router)
  
-app.include_router(user_router,prefix='/users')
+app.include_router(user_router,prefix='/users',dependencies=[auth_dependency])
 
-app.include_router(professor_router,prefix='/professors')
+app.include_router(subject_router,prefix="/subjects",dependencies=[auth_dependency])
+
+app.include_router(professor_router,prefix='/professors',dependencies=[auth_dependency])
+
+app.include_router(accommodation_router,prefix='/accommodations',dependencies=[auth_dependency])
 
 #Global Exception handlers
 
@@ -36,11 +53,19 @@ async def http_exception_handler(request, exc:RequestValidationError):
 @app.exception_handler(NotFoundException)
 async def not_found_expection_handler(request,exc:NotFoundException):
     return ErrorResponse(message=exc.message,status_code=exc.status_code).send()
+
+@app.exception_handler(UnauthorizedException)
+async def unauthorized_exception_handler(request,exc:UnauthorizedException):
+    return ErrorResponse(message=exc.message,status_code=exc.status_code).send()
   
 @app.exception_handler(InvalidId)
 async def exception_handler(request, exc):
     return ErrorResponse(message=str(exc),status_code=status.HTTP_422_UNPROCESSABLE_ENTITY).send()
 
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request, exc:HTTPException):
+   return ErrorResponse(message=str(exc.detail),status_code=exc.status_code).send()
+  
 @app.exception_handler(Exception)
 async def exception_handler(request, exc):
     return ErrorResponse(message=str(exc),status_code=status.HTTP_500_INTERNAL_SERVER_ERROR).send()

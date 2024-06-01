@@ -1,4 +1,4 @@
-def subject_swap_helper(subject) -> dict:
+def subject_helper(subject) -> dict:
     return {
         "id": str(subject.get("_id", None)),
         "current_subject": subject.get("current_subject", None),
@@ -15,5 +15,5 @@ def subject_swap_helper(subject) -> dict:
 
 
 
-def subject_swaps_helper(subjects)->list:
-    return [subject_swap_helper(subject) for subject in subjects]
+def subjects_helper(subjects)->list:
+    return [subject_helper(subject) for subject in subjects]
