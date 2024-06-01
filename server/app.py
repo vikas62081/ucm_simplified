@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI,status
+from fastapi import Depends, FastAPI, HTTPException,status
 from fastapi.exceptions import RequestValidationError
 from bson.errors import InvalidId
 from fastapi.middleware.cors import CORSMiddleware
@@ -62,6 +62,10 @@ async def unauthorized_exception_handler(request,exc:UnauthorizedException):
 async def exception_handler(request, exc):
     return ErrorResponse(message=str(exc),status_code=status.HTTP_422_UNPROCESSABLE_ENTITY).send()
 
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request, exc:HTTPException):
+   return ErrorResponse(message=str(exc.detail),status_code=exc.status_code).send()
+  
 @app.exception_handler(Exception)
 async def exception_handler(request, exc):
     return ErrorResponse(message=str(exc),status_code=status.HTTP_500_INTERNAL_SERVER_ERROR).send()
