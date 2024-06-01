@@ -8,6 +8,7 @@ import SubjectRequest from "../pages/subject/SubjectRequest";
 import HomePage from "../pages/HomePage";
 import AccomodationRequest from "../pages/accomodation/AccomodationRequest";
 import AccommodationDetails from "../pages/accomodation/AccomodationDetails";
+import AccommodationList from "../pages/accomodation/AccomodationList";
 
 const AppPaths = [
   {
@@ -31,12 +32,16 @@ const AppPaths = [
     element: <SubjectRequest />,
   },
   {
-    path: "/accomodation/request",
+    path: "/accomodations/request",
     element: <AccomodationRequest />,
   },
   {
-    path: "/accomodation/detail",
+    path: "/accomodations/detail",
     element: <AccommodationDetails />,
+  },
+  {
+    path: "/accomodations/",
+    element: <AccommodationList />,
   },
 ];
 

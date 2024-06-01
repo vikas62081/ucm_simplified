@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-10 flex w-full items-center justify-between bg-primary px-6 py-3 text-white shadow-md">
+      <header className="sticky top-0 z-10 flex w-full items-center justify-between bg-primary px-6 text-white shadow-md xs:py-2 sm:py-2 md:py-3 lg:py-3">
         <div className="">
           <FontAwesomeIcon
             icon={faBars}
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           />
         </div>
 
-        <img src={Logo} alt="Logo" className="h-8" />
+        <img src={Logo} alt="Logo" className="h-7" />
         <FontAwesomeIcon
           icon={faUserCircle}
           size="xl"
