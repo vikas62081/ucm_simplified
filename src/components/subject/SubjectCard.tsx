@@ -35,14 +35,16 @@ const SubjectCard = (props: SubjectCardTypes) => {
   return (
     <div>
       <div
-        className={`rounded-lg border border-gray-300 bg-white p-3 text-gray-900 ${dropShadow ? "shadow-custom" : ""}`}
+        className={`rounded-lg border border-gray-300 bg-white p-3 py-2 text-gray-900 ${dropShadow ? "shadow-custom" : ""}`}
         onClick={() => {
           goToSubjectDetail();
         }}
       >
         {/* TITLE */}
         {type === "normalCard" ? (
-          <p className=" py-1 pb-2 text-xl font-bold">{subject}</p>
+          <p className=" py-0 pb-0 font-bold sm:text-lg md:text-lg lg:text-xl">
+            {subject}
+          </p>
         ) : (
           <p className="text-label mb-1">{subject?.toUpperCase()}</p>
         )}

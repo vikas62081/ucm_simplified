@@ -34,7 +34,7 @@ export default {
     },
       colors: {
         'custom-dark': '#242424', // Custom color
-          'custom-black': "#303030",
+          'custom-black': "#1E2228",
           primary: '#00796B',   // Replace '#4f46e5' with your primary color
           secondary: '#E0F2F1', // Replace '#ec4899' with your secondary color
           strongPrimary: '#088D7E',
@@ -46,6 +46,8 @@ export default {
           'custom-gray-fill': '#F5F5F5', // Custom gray used in AccomodationDetails page for button fill
           'custom-gray-text-contact': '#7D7B7B', // Custom gray used in AccomodationDetails page for contact details
           'custom-green-svg': '#00796B', // Custom gray used svgs
+          'gray-50':"#939599",
+          'gray-100':"#1E2228"
       },
       dropShadow: {
         'custom': '0 4px 2px rgba(0, 0, 0, 0.25)'},
