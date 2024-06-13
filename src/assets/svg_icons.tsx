@@ -5,7 +5,7 @@ interface IconProps {
 
 const PlusIcon: React.FC<IconProps> = ({ size = 5, color = "primary" }) => (
   <svg
-    className={`h-${size} w-${size} mx-2 text-${color}`}
+    className={`h-${size} w-${size} text-${color}`}
     width="24"
     height="24"
     viewBox="0 0 24 24"
@@ -28,15 +28,35 @@ const CalenderIcon: React.FC<IconProps> = ({ size = 3, color = "primary" }) => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
+      strokeWidth="2"
       stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
     >
       {" "}
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />{" "}
       <line x1="16" y1="2" x2="16" y2="6" />{" "}
       <line x1="8" y1="2" x2="8" y2="6" />{" "}
       <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+};
+
+const ChevronLeft: React.FC<IconProps> = ({ size = 5, color = "primary" }) => {
+  return (
+    <svg
+      className={`h-${size} w-${size} text-${color}`}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      strokeWidth="2"
+      stroke="currentColor"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {" "}
+      <path stroke="none" d="M0 0h24v24H0z" />{" "}
+      <polyline points="15 6 9 12 15 18" />
     </svg>
   );
 };
@@ -85,9 +105,9 @@ const EyeEnabled: React.FC<IconProps> = ({ size = 5 }) => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
+      strokeWidth="2"
       stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
     >
       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />{" "}
       <circle cx="12" cy="12" r="3" />
@@ -104,9 +124,9 @@ const EyeDisabled: React.FC<IconProps> = ({ size = 5 }) => {
       stroke="currentColor"
     >
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
       />
     </svg>
@@ -114,4 +134,11 @@ const EyeDisabled: React.FC<IconProps> = ({ size = 5 }) => {
 };
 export default WhatsAppIcon;
 
-export { PlusIcon, CalenderIcon, WhatsAppIcon, EyeDisabled, EyeEnabled };
+export {
+  PlusIcon,
+  CalenderIcon,
+  WhatsAppIcon,
+  EyeDisabled,
+  EyeEnabled,
+  ChevronLeft,
+};

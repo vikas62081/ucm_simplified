@@ -49,14 +49,20 @@ const Button: React.FC<ButtonProps> = ({ label, icon, type, to, onClick }) => {
       style={{ minHeight: MINIMUM_BUTTON_HEIGHT }}
       className={classNames}
     >
-      <div className="flex items-center">
-        {icon}
-        <div
-          className={`pl-${icon ? 1 : 0} text-center ${type === "tertiary" ? "text-xs" : "text-md"}`}
-        >
-          {formattedLabel}
+      <button
+        style={{ minHeight: MINIMUM_BUTTON_HEIGHT }}
+        type="submit"
+        className="flex w-full items-center justify-center"
+      >
+        <div className="flex items-center">
+          <div className={`${icon && "mr-2"}`}>{icon}</div>
+          <div
+            className={`pl-${icon ? 1 : 0} text-center ${type === "tertiary" ? "text-xs" : "text-md"}`}
+          >
+            {formattedLabel}
+          </div>
         </div>
-      </div>
+      </button>
     </div>
   );
 };
