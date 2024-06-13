@@ -5,7 +5,7 @@ interface IconProps {
 
 const PlusIcon: React.FC<IconProps> = ({ size = 5, color = "primary" }) => (
   <svg
-    className={`h-${size} w-${size} mx-2 text-${color}`}
+    className={`h-${size} w-${size} text-${color}`}
     width="24"
     height="24"
     viewBox="0 0 24 24"
@@ -37,6 +37,26 @@ const CalenderIcon: React.FC<IconProps> = ({ size = 3, color = "primary" }) => {
       <line x1="16" y1="2" x2="16" y2="6" />{" "}
       <line x1="8" y1="2" x2="8" y2="6" />{" "}
       <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+};
+
+const ChevronLeft: React.FC<IconProps> = ({ size = 5, color = "primary" }) => {
+  return (
+    <svg
+      className={`h-${size} w-${size} text-${color}`}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      strokeWidth="2"
+      stroke="currentColor"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {" "}
+      <path stroke="none" d="M0 0h24v24H0z" />{" "}
+      <polyline points="15 6 9 12 15 18" />
     </svg>
   );
 };
@@ -114,4 +134,11 @@ const EyeDisabled: React.FC<IconProps> = ({ size = 5 }) => {
 };
 export default WhatsAppIcon;
 
-export { PlusIcon, CalenderIcon, WhatsAppIcon, EyeDisabled, EyeEnabled };
+export {
+  PlusIcon,
+  CalenderIcon,
+  WhatsAppIcon,
+  EyeDisabled,
+  EyeEnabled,
+  ChevronLeft,
+};
