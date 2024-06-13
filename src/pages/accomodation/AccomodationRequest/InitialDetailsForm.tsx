@@ -130,6 +130,7 @@ export const InitialDetailsForm: React.FC<InitialDetailsFormProps> = ({
 
         <Gap gap={4} />
         <Button label="Next" onClick={() => handleSubmit()} type="secondary" />
+        <Gap gap={4} />
       </Form>
     )}
   </Formik>

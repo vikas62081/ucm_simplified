@@ -64,7 +64,7 @@ export interface AdditionalDetailsFormProps {
 }
 
 const AccomodationRequest: React.FC = () => {
-  const [showAdditionalDetails, setShowAdditionalDetails] = useState(true);
+  const [showAdditionalDetails, setShowAdditionalDetails] = useState(false);
   const [initialFormValues, setInitialFormValues] =
     useState<InitialFormValues | null>(null);
   const [selectedType, setSelectedType] = useState<ToggleValue>(
