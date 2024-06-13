@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from services.auth_helper_service import AuthHelperService
 from services.professor_service import ProfessorService
 from services.professor_review_service import ProfessorReviewService
 from models.success_response import SuccessResponse
@@ -6,6 +7,7 @@ from models.professor import Professor
 from models.professor_review import ProfessorReview
 
 professor_router=APIRouter(tags=["Professor"])
+auth_dependency = Depends(AuthHelperService().auth_wrapper)
 
 @professor_router.get("")
 def get_professors():
@@ -34,10 +36,11 @@ def get_reviews_by_user_id(id:str):
     return SuccessResponse(data=reviews,message="Review data retrieved successfully")
 
 @professor_router.post("/{id}/reviews")
-def create_review(id:str,professor:ProfessorReview):
+def create_review(id:str,professor:ProfessorReview,user_id:str=auth_dependency):
+    
     professor_dict=professor.model_dump()
     professor_dict['professor_id']=id
-    review=ProfessorReviewService.create_professor_review(professor_dict)
+    review=ProfessorReviewService.create_professor_review(user_id,professor_dict)
     return SuccessResponse(data=review,message="Review created successfully")
      
 

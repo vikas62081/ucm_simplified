@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-class SubjectSwapStatus(str, Enum):
+class Status(str, Enum):
     ACTIVE = "active"
     COMPLETED = "completed"
 

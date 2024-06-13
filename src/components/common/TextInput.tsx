@@ -159,7 +159,7 @@ const TextInput: React.FC<InputProps> = ({
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute inset-y-0 right-0 flex items-center pr-3"
+          className="absolute  right-0 mr-3 flex h-5 w-5 items-center bg-white"
         >
           {inputType === "password" ? <EyeEnabled /> : <EyeDisabled />}
         </button>

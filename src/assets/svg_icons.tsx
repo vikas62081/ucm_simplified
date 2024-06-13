@@ -29,7 +29,7 @@ const CalenderIcon: React.FC<IconProps> = ({ size = 3, color = "primary" }) => {
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
-      stroke-linecap="round"
+      strokeLinecap="round"
       strokeLinejoin="round"
     >
       {" "}
@@ -106,7 +106,7 @@ const EyeEnabled: React.FC<IconProps> = ({ size = 5 }) => {
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
-      stroke-linecap="round"
+      strokeLinecap="round"
       strokeLinejoin="round"
     >
       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />{" "}

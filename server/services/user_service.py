@@ -3,8 +3,10 @@ from config.database import users_collection
 from schemas.user_helper import users_helper,user_helper
 from exceptions.not_found_expection import NotFoundException
 from datetime import datetime
+from services.auth_helper_service import AuthHelperService
 
-class UserService:
+
+class UserService():
     def get_users():
         users=users_collection.find()
         return users_helper(users)
@@ -19,18 +21,27 @@ class UserService:
         user = users_collection.find_one({'email':email})
         if not user:
             raise NotFoundException(f"User not found with email id {email}")
-        return user_helper(user)
+        return user
     
     def create_user(user):
-        user_dict = user.dict()
-        user_dict['subject_swaps']=[]
-        user_dict['accommodations']=[]
-        user_dict['total_professors_review_count']=0
-        user_dict['created_at']=datetime.now()
-        user= users_collection.insert_one(dict(user_dict))
-        return UserService.get_user_by_id(user.inserted_id)
+        try:
+            print(user.email)
+            UserService.get_user_by_email(user.email)
+            # user already exist raise an exception
+        except:
+            now=datetime.now()
+            user_dict = user.dict()
+            user_dict['subject_swaps']=[]
+            user_dict['accommodations']=[]
+            user_dict['total_professors_review_count']=0
+            user_dict['created_at']=now
+            user_dict['updated_at']=now
+            user_dict['password']=AuthHelperService().get_password_hash(user.password)
+            user= users_collection.insert_one(dict(user_dict))
+            return UserService.get_user_by_id(user.inserted_id)
     
     def update_user(id:str,user):
+        user['updated_at']=datetime.now()
         users_collection.find_one_and_update({"_id":ObjectId(id)},{"$set":dict(user)})
         return UserService.get_user_by_id(id)
     
