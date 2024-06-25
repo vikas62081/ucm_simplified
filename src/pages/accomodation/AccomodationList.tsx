@@ -66,7 +66,7 @@ const AccomodationList: React.FC = () => {
         <div
           //   style={{ backgroundColor: "#ffc400" }}
           className="flex cursor-pointer items-center justify-center rounded-full border  bg-primary px-3  text-white drop-shadow-lg xs:py-2 sm:py-2 md:py-3 lg:py-3"
-          onClick={() => navigate("/accomodation/request")}
+          onClick={() => navigate("/accomodations/request")}
         >
           <FontAwesomeIcon icon={faPlus} />
           <span className="pl-2">Add new</span>
