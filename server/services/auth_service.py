@@ -2,6 +2,7 @@ from fastapi import HTTPException
 from exceptions.unauthorized_exception import UnauthorizedException
 from exceptions.not_found_expection import NotFoundException
 from models.auth import OtpVerification, ResetPassword
+from services.sms_service import SmsService
 from services.auth_helper_service import AuthHelperService
 from services.user_service import UserService
 
@@ -19,6 +20,7 @@ class AuthService():
         return token
     
     def register_user(self, user):
+        # SmsService().send_sms(to="+19132388038",message="Hello")
         return UserService.create_user(user)
     
     def reset_password(self, reset_info): 

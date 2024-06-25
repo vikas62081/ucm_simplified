@@ -4,3 +4,4 @@ pymongo==4.7.1
 passlib
 PyJWT
 bcrypt
+twilio

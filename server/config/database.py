@@ -16,3 +16,6 @@ users_collection = db["users"]
 professors_collection = db["professors"]
 professors_review_collection=db["professors_review"]
 accommodation_collection = db["accommodations"]
+# Ride
+ride_offers_collection = db["ride_offers"]
+ride_requests_collection = db["ride_requests"]
